@@ -1,0 +1,18 @@
+---
+
+- hosts: servers
+  become: yes
+  tasks: 
+    - name: sets up apache
+      apt:
+        name: apache2
+        state: present
+    - name: open port 80
+      ufw:
+        rule: allow
+        port: '80'
+        proto: tcp
+    - name: add user
+      user:
+        name: ansiuser
+
